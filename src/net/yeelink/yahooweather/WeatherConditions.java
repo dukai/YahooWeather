@@ -3,7 +3,9 @@ package net.yeelink.yahooweather;
 import java.util.Hashtable;
 
 public class WeatherConditions {
-	private Hashtable<Object, String> code2Condition = new Hashtable<Object, String>();
+	private static Hashtable<Object, String> code2Condition = new Hashtable<Object, String>();
+	
+	private static WeatherConditions wc = null;
 	
 	public WeatherConditions(){
 		/*
@@ -108,7 +110,10 @@ public class WeatherConditions {
 		code2Condition.put(3200, "暂无数据");
 	}
 	
-	public String getCondition(int code){
+	public static String getCondition(int code){
+		if(wc == null){
+			wc = new WeatherConditions();
+		}
 		return code2Condition.get(code);
 	}
 }
